@@ -8,7 +8,7 @@ public class PrepareStatementTest {
     @Test
     void testSqlInjection() throws SQLException {
         Connection connection = ConnectionUtil.getDataSource().getConnection();
-        String username = "admin";
+        String username = "admin'; #";
         String password = "salah";
 
         String sql = "SELECT * FROM admin WHERE username = ? AND password = ?";

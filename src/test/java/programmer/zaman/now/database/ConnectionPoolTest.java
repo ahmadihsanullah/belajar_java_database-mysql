@@ -19,8 +19,8 @@ public class ConnectionPoolTest {
 
         //konfigurasi pool
         config.setMaximumPoolSize(10);
-        config.setMinimumIdle(5);
-        //selama 60 detik tidak digunakan akan diclose
+        config.setMinimumIdle(5); // jika 10 itu banyak yang gk kerja, dia nyisain 5
+        //selama 60 detik tidak ada yang menggunakan akan diclose
         config.setIdleTimeout(60_000);
         //restart ulang jika koneksi sudah lama digunakan
         config.setMaxLifetime(10  * 60_000);
@@ -28,7 +28,7 @@ public class ConnectionPoolTest {
        try{
            HikariDataSource dataSource = new HikariDataSource(config);
            Connection connection = dataSource.getConnection();
-           //koneksi akan dikembalikan ke pool
+           //koneksi akan dikembalikan ke pool - dia mengembalikan ke datasource
            connection.close();
            //koneksi ditutup
            dataSource.close();

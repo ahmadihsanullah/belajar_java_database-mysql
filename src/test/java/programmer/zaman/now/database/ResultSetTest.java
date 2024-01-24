@@ -19,9 +19,9 @@ public class ResultSetTest {
         while(resultSet.next()){
             String customerId = resultSet.getString("id");
             String customerName = resultSet.getString("name");
-            String customerEmail = resultSet.getString("customers.email");
+            String customerEmail = resultSet.getString("email");
 
-            System.out.println(String.join(", ", customerId, customerName, customerEmail));
+            System.out.println(String.join(" - ", customerId, customerName, customerEmail));
         }
 
         resultSet.close();

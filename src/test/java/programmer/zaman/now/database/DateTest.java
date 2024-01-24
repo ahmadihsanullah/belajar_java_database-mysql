@@ -13,12 +13,15 @@ public class DateTest {
                 INSERT INTO sample_time (sample_date, sample_time,sample_timestamp) VALUES (?, ?, ?)
                 """;
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR,2022);
-        calendar.set(Calendar.MONTH,Calendar.FEBRUARY);
-        calendar.set(Calendar.DAY_OF_MONTH,2);
-        java.util.Date date = calendar.getTime();
-        preparedStatement.setDate(1, new Date(date.getTime()));
+
+        // Calendar calendar = Calendar.getInstance();
+        // calendar.set(Calendar.YEAR,2022);
+        // calendar.set(Calendar.MONTH,Calendar.FEBRUARY);
+        // calendar.set(Calendar.DAY_OF_MONTH,2);
+
+        // java.util.Date date = calendar.getTime();
+
+        preparedStatement.setDate(1, new Date(System.currentTimeMillis()));
         preparedStatement.setTime(2, new Time(System.currentTimeMillis()));
         preparedStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
 
@@ -35,6 +38,7 @@ public class DateTest {
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
         ResultSet resultSet = preparedStatement.executeQuery();
+
         while (resultSet.next()) {
             Date date = resultSet.getDate("sample_date");
             System.out.println("Date: " + date);
@@ -42,6 +46,7 @@ public class DateTest {
             System.out.println("Time: " + time);
             Timestamp timeStamp = resultSet.getTimestamp("sample_timestamp");
             System.out.println("Timestamp: " + timeStamp);
+            System.out.println("----------------------------");
         }
 
         resultSet.close();

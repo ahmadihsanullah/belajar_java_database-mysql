@@ -30,7 +30,7 @@ public class MetadataTest {
         ParameterMetaData parameterMetaData = preparedStatement.getParameterMetaData();
 
         System.out.println(parameterMetaData.getParameterCount());
-//        System.out.println(parameterMetaData.getParameterType(1));
+        System.out.println(parameterMetaData.getParameterType(1)); // mysql tidak support
 
         connection.close();
     }
@@ -44,12 +44,14 @@ public class MetadataTest {
         ResultSetMetaData resultSetMetaData = resultSet.getMetaData();
 
         for(var i = 1; i <= resultSetMetaData.getColumnCount(); i++) {
+            System.out.println("-------------------");
             System.out.println("Name : " + resultSetMetaData.getColumnName(i));
             System.out.println("Type : " + resultSetMetaData.getColumnType(i));
             System.out.println("Type Name : " + resultSetMetaData.getColumnTypeName(i));
             if(resultSetMetaData.getColumnType(i) == Types.INTEGER){
                 System.out.println("INI INTEGER");
             }
+            System.out.println("-------------------\n");
         }
 
         statement.close();

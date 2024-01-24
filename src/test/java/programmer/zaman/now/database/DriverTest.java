@@ -12,7 +12,7 @@ public class DriverTest {
     void testRegister() {
         try{
             //1. create driver
-           Driver mysqlDriver = new com.mysql.cj.jdbc.Driver();
+           Driver mysqlDriver = new com.mysql.cj.jdbc.Driver(); //berpotensi error
            //2. register driver
             DriverManager.registerDriver(mysqlDriver);
         } catch (SQLException e) {

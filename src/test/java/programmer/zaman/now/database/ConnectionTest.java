@@ -23,17 +23,17 @@ public class ConnectionTest {
 
     @Test
     void testConnection() {
-        String jdbcUrl = "jdbc:mysql://localhost:3306/belajar_java_database?serverTimezone=Asia/Jakarta";
+        String jdbcUrl = "jdbc:mysql://localhost:3306/belajar_java_database";
         String username = "root";
         String password = "";
 
         try{
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-            System.out.println("Sukses konek ke database");
+            System.out.println("Sukses konek ke database"); 
         }catch (SQLException e){
             Assertions.fail(e);
         }
-    }
+        }
 
     @Test
     void testConnectionClose() {
@@ -44,6 +44,7 @@ public class ConnectionTest {
         //menggunakan try with resource database akan tertutup otomatis
         try(Connection connection = DriverManager.getConnection(jdbcUrl, username, password)){
             System.out.println("Sukses konek ke database");
+            // connection.close(); close secara manual
         }catch (SQLException e){
             Assertions.fail(e.getMessage());
         }
